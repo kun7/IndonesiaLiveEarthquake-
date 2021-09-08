@@ -5,3 +5,11 @@ this package will scrape from [BMKG](https:bmkg.go.id) to get the latest informa
 
 this package will use BeautifulSoup4 and requests to produce output in the form of JSON 
 that is ready to be used in web or mobile applications
+
+## HOW TO USE
+"""
+import gempaterkini
+if __name__ == '__main__':
+    result = extraction_data()
+    show_result(result)
+"""
