@@ -1,15 +1,37 @@
 from bs4 import BeautifulSoup
 import requests
 
-class GempaTerkini:
-    def __init__(self):
-        self.description = 'to get the latest earthquake in Indonesia in BMKG.go.id'
-        self.result = None
+class Bencana:
+    def __init__(self, url, description):
+        self. result = None
+        self.url = url
+        self.description = description
+
+    def extraction_data(self):
+        pass
+
+    def show_result(self):
+        pass
+
+    def run(self):
+        self.extraction_data()
+        self.show_result()
+
+#class BencanaTerkini(Bencana):
+    #def __init__(self, url):
+        #super(BencanaTerkini, self).__init__(url, 'To get the latest news of disaster in Indonesia from BNPB.go.id')
+
+    #def extraction_data(self):
+
+class GempaTerkini(Bencana):
+    def __init__(self, url):
+        super(GempaTerkini, self).__init__(url, 'To get the latest news of earthquake in Indonesia from BMKG.go.id')
+
 
     def extraction_data(self):
 
         try:
-            r = requests.get('https://www.bmkg.go.id')
+            r = requests.get(self.url)
         except Exception:
             return None
 
@@ -70,7 +92,10 @@ class GempaTerkini:
         print(self.result['dirasakan'])
 
 if __name__ == '__main__':
-    gempa_di_indonesia = GempaTerkini()
+    gempa_di_indonesia = GempaTerkini('https://www.bmkg.go.id')
     print('Deskripsi Package', gempa_di_indonesia.description)
-    result = gempa_di_indonesia.extraction_data()
-    gempa_di_indonesia.show_result()
+    gempa_di_indonesia.run()
+
+    #bencana_di_indonesia = BencanaTerkini('https://bnpb.go.id/')
+    #print('Deskripsi Package', BencanaTerkini.description)
+    #bencana_di_indonesia.run()
